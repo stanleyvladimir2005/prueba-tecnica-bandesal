@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Agregar Lector de Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+    <div class="container my-5">
+        <h3> Agregar Lector de Blog</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/blogsReader/createBlogReader}" th:object="${blogReader}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+
+                                <div class="form-group">
+                                    <label for="blog">Blog</label>
+                                    <select class="form-control" id="blog" >
+                                        <option hidden value="">Seleccione un blog</option>
+                                        th:each="blog : ${T(sv.com.bandesal.pruebatecnica.model.Blog).values()}"
+                                        th:text="${blog}"
+                                        th:value="${blog}">
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reader">Lector</label>
+                                    <select class="form-control" id="reader">
+                                        <option hidden value="">Seleccione un lector</option>
+                                        th:each="reader : ${T(sv.com.bandesal.pruebatecnica.model.Reader).values()}"
+                                        th:text="${reader}"
+                                        th:value="${reader}">
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value=" Submit ">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
