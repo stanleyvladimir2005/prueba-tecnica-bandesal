@@ -3,42 +3,123 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Agregar Blog</title>
+    <title>Agregar Lector</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: rgb(75, 68, 68);
+            padding: 10px;
+            text-align: center;
+            font-size: 15px;
+            color: white;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: left;
+            width: 15%;
+            height: 790px; /* only for demonstration, should be removed */
+            background: #ccc;
+            padding: 20px;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 70%;
+            background-color: #f1f1f1;
+            height: 300px; /* only for demonstration, should be removed */
+        }
+
+        /* Clear floats after the columns */
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: rgb(75, 68, 68);
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="container my-5">
-        <h3> Agregar Blog</h3>
-        <div class="card">
-            <div class="card-body">
-                <div class="col-md-10">
-                    <form action="#" th:action="@{/blogs/createBlogs}" th:object="${blog}" method="post">
-                        <div class="row">
-                            <div class="form-group col-md-8">
-                                <label for="title" class="col-form-label">Titulo</label>
-                                <input type="text" required maxlength="50" th:field="*{title}" class="form-control"
+    <header>
+        <h2>BANCO DE DESARROLLO DE EL SALVADOR</h2>
+    </header>
+    <section>
+        <nav>
+            <ul>
+                <a class="nav-link active" aria-current="page" th:href="@{/register}">Registrar Usuario</a>
+                <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogs/}">Gestion de Blogs</a>
+                <br><br><a class="nav-link active" aria-current="page" th:href="@{/readers/}">Gestion de Lectores</a>
+                <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogReaders/}">Gestion de blog delectores</a>
+                <br><br><a class="nav-link active" aria-current="page" th:href="@{/users}">Gestion de Usuarios</a>
+                <br><br><a class="nav-link active" aria-current="page" th:href="@{/logout}">Cerrar Sesion</a>
+            </ul>
+        </nav>
+        <div class="container my-5">
+            <h3> Agregar Blog</h3>
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-10">
+                        <form action="#" th:action="@{/blogs/createBlogs}" th:object="${blog}" method="post">
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label for="title" class="col-form-label">Titulo</label>
+                                    <input type="text" required maxlength="50" th:field="*{title}" class="form-control"
                                        id="title" placeholder="El titulo no debe contener mas de 50 caracteres" />
-                            </div>
-                            <div class="form-group col-md-8">
-                                <label for="description" class="col-form-label">Descripcion</label>
-                                <input type="text" required maxlength="400" th:field="*{description}" class="form-control"
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="description" class="col-form-label">Descripcion</label>
+                                    <input type="text" required maxlength="400" th:field="*{description}" class="form-control"
                                        id="description" placeholder="Este Campo puede tener 400 caracteres" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="submit" class="btn btn-primary" value=" Submit ">
+                                </div>
+                                <input type="hidden" id="id" th:field="*{id}">
                             </div>
-
-                            <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary" value=" Submit ">
-                            </div>
-                            <input type="hidden" id="id" th:field="*{id}">
-    
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <footer>
+        <p>Vladimir Stanley Alvarez Alvarado</p>
+    </footer>
 </body>
-
-</html>
+</html>>
