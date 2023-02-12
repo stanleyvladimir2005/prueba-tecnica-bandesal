@@ -19,8 +19,6 @@ public class CustomerDetailsService implements UserDetailsService {
     @Autowired
     private IUserRepository IUserRepository;
 
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = IUserRepository.findByEmail(email);

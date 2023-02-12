@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,13 +31,12 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/login/**").permitAll()
-                                .requestMatchers("/v1/blog-reader-rest/**").permitAll()
+                                .requestMatchers("/v1/blogs/**").permitAll()
                                 .requestMatchers("/index").hasRole("ADMIN")
                                 .requestMatchers("/blogs/**").hasRole("ADMIN")
                                 .requestMatchers("/readers/**").hasRole("ADMIN")
                                 .requestMatchers("/blogReaders/**").hasRole("ADMIN")
                                 .requestMatchers("/users/**").hasRole("ADMIN")
-                                .requestMatchers("/v1/auth/**").permitAll()
                 )
                 .formLogin(
                         form -> form
