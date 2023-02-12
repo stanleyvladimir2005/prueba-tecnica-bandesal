@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         * {
             box-sizing: border-box;
@@ -32,7 +33,7 @@
         nav {
             float: left;
             width: 15%;
-            height: 790px; /* only for demonstration, should be removed */
+            height: 835px; /* only for demonstration, should be removed */
             background: #ccc;
             padding: 20px;
         }
@@ -82,7 +83,7 @@
     <section>
         <nav>
             <ul>
-                <a class="nav-link active" aria-current="page" th:href="@{/register}">Registrar Usuario</a>
+                <a class="nav-link active" aria-current="page">Menu Principal</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogs/}">Gestion de Blogs</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/readers/}">Gestion de Lectores</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogReaders/}">Gestion de blog delectores</a>
@@ -90,8 +91,8 @@
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/logout}">Cerrar Sesion</a>
             </ul>
         </nav>
-        <div class="container my-5">
-            <h3> Agregar Blog</h3>
+        <div class="container">
+            <h1><center>Agregar Blog</center></h1><br>
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-10">
@@ -108,7 +109,9 @@
                                        id="description" placeholder="Este Campo puede tener 400 caracteres" />
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="submit" class="btn btn-primary" value=" Submit ">
+                                    <input type="submit" class="btn btn-primary" value="Registrar">
+                                    <span> <a href="/" th:href="@{/blogs/}"> Regresar</a></span>
+
                                 </div>
                                 <input type="hidden" id="id" th:field="*{id}">
                             </div>
@@ -122,4 +125,4 @@
         <p>Vladimir Stanley Alvarez Alvarado</p>
     </footer>
 </body>
-</html>>
+</html>

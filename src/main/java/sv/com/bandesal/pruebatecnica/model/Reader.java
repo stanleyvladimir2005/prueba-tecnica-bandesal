@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "readers")
+@SequenceGenerator(name = "readerSequence",sequenceName = "readerSeqGen",  initialValue = 100, allocationSize = 10)
 public class Reader {
 
     @Id
-    @SequenceGenerator(name = "readerSequence", sequenceName = "readerSequence", initialValue = 100)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "readerSeqGen")
     @Column(name="id", length = 8)
     private Integer id;
 

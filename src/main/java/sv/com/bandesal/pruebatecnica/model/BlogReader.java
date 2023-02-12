@@ -1,8 +1,6 @@
 package sv.com.bandesal.pruebatecnica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +12,10 @@ import lombok.NoArgsConstructor;
 @IdClass(BlogReaderPK.class)
 public class BlogReader {
 
-    @Id
+   @Id
     private Blog blog;
 
     @Id
     private Reader reader;
+
 }

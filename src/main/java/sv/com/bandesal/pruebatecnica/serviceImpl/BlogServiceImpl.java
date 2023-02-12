@@ -3,6 +3,7 @@ package sv.com.bandesal.pruebatecnica.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.Blog;
+import sv.com.bandesal.pruebatecnica.model.BlogReader;
 import sv.com.bandesal.pruebatecnica.repository.IBlogRepository;
 import sv.com.bandesal.pruebatecnica.repository.IGenericRepository;
 import sv.com.bandesal.pruebatecnica.service.IBlogService;

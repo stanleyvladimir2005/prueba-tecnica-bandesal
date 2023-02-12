@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class Blog {
 
     @Id
-    @SequenceGenerator(name = "blogSequence", sequenceName = "blogSequence", initialValue = 100)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blogSeqGen")
+    @SequenceGenerator(name = "blogSequence", sequenceName = "blogSeqGen", initialValue = 100, allocationSize = 10)
     @Column(name="id", length = 8)
     private Integer id;
 

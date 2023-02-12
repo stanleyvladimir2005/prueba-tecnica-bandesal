@@ -1,15 +1,11 @@
 package sv.com.bandesal.pruebatecnica.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,6 +20,9 @@ public class User
 
     @Column(nullable=false)
     private String name;
+
+    private String firstname;
+    private String lastname;
 
     @Column(nullable=false, unique=true)
     private String email;

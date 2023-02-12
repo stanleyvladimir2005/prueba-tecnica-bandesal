@@ -28,7 +28,7 @@
     nav {
         float: left;
         width: 15%;
-        height: 790px; /* only for demonstration, should be removed */
+        height: 835px; /* only for demonstration, should be removed */
         background: #ccc;
         padding: 20px;
     }
@@ -78,7 +78,7 @@
     <section>
         <nav>
             <ul>
-                <a class="nav-link active" aria-current="page" th:href="@{/register}">Registrar Usuario</a>
+                <a class="nav-link active" aria-current="page">Menu Principal</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogs/}">Gestion de Blogs</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/readers/}">Gestion de Lectores</a>
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/blogReaders/}">Gestion de blog delectores</a>
@@ -86,32 +86,22 @@
                 <br><br><a class="nav-link active" aria-current="page" th:href="@{/logout}">Cerrar Sesion</a>
             </ul>
         </nav>
-        <div class="container my-5">
-            <h3> Agregar Lector de Blog</h3>
+        <div class="container">
+            <h1><center>Agregar Lector de Blog</center></h1><br>
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-10">
-                        <form action="#" th:action="@{/blogsReader/createBlogReader}" th:object="${blogReader}" method="post">
+                        <form action="#" th:action="@{/blogReaders/createBlogReaders}" th:object="${blogReader}" method="post">
                             <div class="row">
                                 <div class="form-group col-md-8">
-                                    <div class="form-group">
-                                        <label for="blog">Blog</label>
-                                        <select class="form-control" id="blog" >
-                                            <option hidden value="">Seleccione un blog</option>
-                                                th:each="blog : ${T(sv.com.bandesal.pruebatecnica.model.Blog).values()}"
-                                                th:text="${blog}"
-                                                th:value="${blog}">
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="reader">Lector</label>
-                                        <select class="form-control" id="reader">
-                                            <option hidden value="">Seleccione un lector</option>
-                                                th:each="reader : ${T(sv.com.bandesal.pruebatecnica.model.Reader).values()}"
-                                                th:text="${reader}"
-                                                th:value="${reader}">
-                                        </select>
-                                    </div>
+                                    <label for="title" class="col-form-label">Blog</label>
+                                    <input type="text" required maxlength="8" th:field="*{blog.id}" class="form-control"
+                                           id="title" placeholder="El id de Blog no debe ser mayor a 8 caracteres" />
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="description" class="col-form-label">Reader</label>
+                                    <input type="text" required maxlength="8" th:field="*{reader.id}" class="form-control"
+                                           id="description" placeholder="El id de Reader no debe ser mayor a 8 caracteres" />
                                 </div>
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-primary" value=" Submit ">
@@ -127,4 +117,4 @@
         <p>Vladimir Stanley Alvarez Alvarado</p>
     </footer>
 </body>
-</html>>
+</html>

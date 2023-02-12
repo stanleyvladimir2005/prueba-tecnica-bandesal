@@ -1,19 +1,16 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import sv.com.bandesal.pruebatecnica.dto.BlogReaderDto;
 import sv.com.bandesal.pruebatecnica.model.BlogReader;
-import sv.com.bandesal.pruebatecnica.model.Reader;
 import sv.com.bandesal.pruebatecnica.service.IBlogReaderService;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class BlogReaderController {
@@ -21,28 +18,41 @@ public class BlogReaderController {
     @Autowired
     private IBlogReaderService service;
 
+    @Autowired
+    private ModelMapper mapper;
+
     @RequestMapping("/blogReaders/")
-    public String getAllBlogReader(Model model) {
-        List<BlogReader> list = service.getBlogReaders();
+    public String getAllBlogReaders(Model model) {
+        List<BlogReaderDto> list = service.getBlogReaders().stream().map(this::convertToDto).collect(Collectors.toList());
         model.addAttribute("blogReaders", list);
         return "list-blogReaders";
     }
 
-    @RequestMapping(path = {"/blogReaders/edit", "/blogReader/edit/{id}"})
-    public String editBlogReaderById(Model model, @PathVariable("id") Optional<Integer> id){
-        if (id.isPresent()) {
-            BlogReader entity = service.findById(id.get());
+     @RequestMapping(path = {"/blogReaders/edit", "/blogReader/edit/"})
+    public String editBlogReadersById(Model model){
+            BlogReader entity = new BlogReader();
             model.addAttribute("blogReader", entity);
-        } else {
-            model.addAttribute("blogReader", new Reader());
-        }
         return "add-edit-blogReaders";
     }
 
-    @PostMapping(path = "/blogReaders/createBlogReader")
-    public String createBlogReader (@Valid @RequestBody BlogReaderDto dto) {
-        BlogReader blogReader = new BlogReader(dto.getBlog(), dto.getReader());
-        service.saveTransactional(blogReader);
-        return "redirect:/blogsReaders/";
+    @RequestMapping(path = "/blogReaders/delete/{br}")
+    public String deleteBlogReaders(Model model, @PathVariable("br") String dto)  {
+        service.deleteBlogReader(dto);
+        return "redirect:/blogReaders/";
+    }
+
+    @PostMapping (path = "/blogReaders/createBlogReaders")
+    public String createOrUpdateBlogReaders(@Valid BlogReaderDto dto) {
+        BlogReader br = convertToEntity(dto);
+        service.createOrUpdateBlog(br);
+        return "redirect:/blogReaders/";
+    }
+
+    private BlogReaderDto convertToDto(BlogReader obj){
+        return mapper.map(obj, BlogReaderDto.class);
+    }
+
+    private BlogReader convertToEntity(BlogReaderDto dto){
+        return mapper.map(dto, BlogReader.class);
     }
 }
