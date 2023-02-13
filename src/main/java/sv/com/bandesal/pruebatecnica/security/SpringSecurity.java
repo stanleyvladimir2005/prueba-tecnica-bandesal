@@ -61,7 +61,6 @@ public class SpringSecurity {
                                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                     .permitAll()
                )
-
                .sessionManagement()
                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                .and()
