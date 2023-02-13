@@ -7,9 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sv.com.bandesal.pruebatecnica.dto.BlogReaderDto;
+import sv.com.bandesal.pruebatecnica.model.Blog;
 import sv.com.bandesal.pruebatecnica.model.BlogReader;
+import sv.com.bandesal.pruebatecnica.model.Reader;
 import sv.com.bandesal.pruebatecnica.service.IBlogReaderService;
+import sv.com.bandesal.pruebatecnica.service.IBlogService;
+import sv.com.bandesal.pruebatecnica.service.IReaderService;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -17,6 +23,12 @@ public class BlogReaderController {
 
     @Autowired
     private IBlogReaderService service;
+
+    @Autowired
+    private IBlogService blogService;
+
+    @Autowired
+    private IReaderService readerService;
 
     @Autowired
     private ModelMapper mapper;
@@ -28,10 +40,14 @@ public class BlogReaderController {
         return "list-blogReaders";
     }
 
-     @RequestMapping(path = {"/blogReaders/edit", "/blogReader/edit/"})
-    public String editBlogReadersById(Model model){
+    @RequestMapping(path = {"/blogReaders/edit"})
+    public String editBlogReadersById(Model model ){
             BlogReader entity = new BlogReader();
+            List<Blog> list11 = blogService.findAll();
+            List<Reader> list2 = readerService.findAll();
             model.addAttribute("blogReader", entity);
+            model.addAttribute("itemsBlog", list11);
+            model.addAttribute("itemsReader", list2);
         return "add-edit-blogReaders";
     }
 

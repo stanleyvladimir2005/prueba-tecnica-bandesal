@@ -14,7 +14,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/v1/blogs")
+@RequestMapping("/api/blogs")
 public class BlogsControllerRest {
 
    @Autowired

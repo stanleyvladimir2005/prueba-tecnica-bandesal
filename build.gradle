@@ -19,6 +19,7 @@ repositories {
     mavenCentral()
 }
 
+//Descomentar cuando se despliegue en wildfly
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -26,6 +27,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+
     //compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
     //implementation 'org.wildfly.plugins:wildfly-maven-plugin:4.0.0.Final'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
@@ -36,7 +41,7 @@ dependencies {
 }
 
 configurations {
-    //all*.exclude module: 'logback-classic' //Se excluye el looging para evitar conflictos con log4J2
+    //all*.exclude module: 'logback-classic'
     //all*.exclude module: 'spring-boot-starter-tomcat'
     //all*.exclude module: 'spring-boot-starter-undertow'
 }

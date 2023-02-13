@@ -32,22 +32,10 @@ public class BlogReaderServiceImpl extends CRUDImpl<BlogReader, Integer> impleme
     @Override
     public void createOrUpdateBlog(BlogReader entity) {
            repo.save(entity);
-
-            /*Optional<Blog> blog = repo.findById(entity.getId());
-            if(blog.isPresent()){
-                Blog newEntity = blog.get();
-                newEntity.setTitle(entity.getTitle());
-                newEntity.setDescription(entity.getDescription());
-                newEntity = repo.save(newEntity);
-            } else {
-                entity = repo.save(entity);
-            }
-        }*/
     }
 
     @Override
     public void deleteBlogReader(String br) {
-        System.out.println(br);
         List<String> list = Arrays.asList(br.split(","));
         String blog = list.get(1).trim();
         String reader = list.get(4).trim();
