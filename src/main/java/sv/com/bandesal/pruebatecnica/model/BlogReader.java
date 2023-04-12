@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 public class BlogReader {
 
    @Id
-    private Blog blog;
+   private Blog blog;
 
-    @Id
-    private Reader reader;
-
+   @Id
+   private Reader reader;
 }
