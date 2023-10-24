@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,7 +39,7 @@ public class SpringSecurity {
        jwtAuthenticationFilter.setFilterProcessesUrl("/auth");
 
        http
-           .csrf().disable()
+           .csrf(AbstractHttpConfigurer::disable)
            .authorizeHttpRequests((authorize) ->
                                      authorize.requestMatchers("/register/**").permitAll()
                                               .requestMatchers("/api/**").permitAll()
@@ -61,9 +61,7 @@ public class SpringSecurity {
                                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                     .permitAll()
                )
-               .sessionManagement()
-               .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-               .and()
+               .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                .addFilter(jwtAuthenticationFilter)
                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
      return http.build();
