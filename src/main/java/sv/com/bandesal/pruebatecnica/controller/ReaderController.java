@@ -31,9 +31,8 @@ public class ReaderController {
         if (id.isPresent()) {
             Reader entity = readerService.findById(id.get());
             model.addAttribute("reader", entity);
-        } else {
+        } else
             model.addAttribute("reader", new Reader());
-        }
         return "add-edit-readers";
     }
 

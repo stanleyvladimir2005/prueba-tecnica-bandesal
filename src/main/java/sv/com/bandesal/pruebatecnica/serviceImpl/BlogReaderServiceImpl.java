@@ -7,8 +7,6 @@ import sv.com.bandesal.pruebatecnica.model.BlogReader;
 import sv.com.bandesal.pruebatecnica.repository.IBlogReaderRepository;
 import sv.com.bandesal.pruebatecnica.repository.IGenericRepository;
 import sv.com.bandesal.pruebatecnica.service.IBlogReaderService;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,10 +35,10 @@ public class BlogReaderServiceImpl extends CRUDImpl<BlogReader, Integer> impleme
     @Override
     public void deleteBlogReader(String br) {
         List<String> list = Arrays.asList(br.split(","));
-        String blog = list.get(1).trim();
-        String reader = list.get(4).trim();
-        int idBlog = Integer.parseInt(blog.substring(blog.indexOf("id=")+3));
-        int idReader = Integer.parseInt(reader.substring(reader.indexOf("id=")+3));
+        var blog = list.get(1).trim();
+        var reader = list.get(4).trim();
+        var idBlog = Integer.parseInt(blog.substring(blog.indexOf("id=")+3));
+        var idReader = Integer.parseInt(reader.substring(reader.indexOf("id=")+3));
         repo.deleteTransactional(idBlog, idReader);
     }
 }

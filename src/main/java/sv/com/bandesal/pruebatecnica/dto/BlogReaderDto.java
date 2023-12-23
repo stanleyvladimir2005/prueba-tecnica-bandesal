@@ -22,12 +22,12 @@ public class BlogReaderDto {
 
     public String numeroAleatorio() {
         char [] chars = "0123456789".toCharArray();
-        int charsLength = chars.length;
-        String cadenaFinal;
+        var charsLength = chars.length;
         SecureRandom random = new SecureRandom();
 
         //Generamos el numero de 8 posiciones usando el arreglo chars
-        cadenaFinal = IntStream.range(0, 8).mapToObj(i -> String.valueOf(chars[random.nextInt(charsLength)])).collect(Collectors.joining());
-        return cadenaFinal;
+        return IntStream.range(0, 8)
+                .mapToObj(i -> String.valueOf(chars[random.nextInt(charsLength)]))
+                .collect(Collectors.joining());
     }
 }

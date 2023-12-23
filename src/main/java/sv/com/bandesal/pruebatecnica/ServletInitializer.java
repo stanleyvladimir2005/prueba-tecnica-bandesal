@@ -10,6 +10,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
         return application.sources(PruebaTecnicaApplication.class);
     }
 
-    private static Class<PruebaTecnicaApplication> applicationClass = PruebaTecnicaApplication.class;
+    private static final Class<PruebaTecnicaApplication> applicationClass = PruebaTecnicaApplication.class;
 }
 

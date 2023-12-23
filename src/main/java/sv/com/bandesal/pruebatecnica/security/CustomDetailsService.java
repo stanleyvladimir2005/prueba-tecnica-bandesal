@@ -12,6 +12,7 @@ import sv.com.bandesal.pruebatecnica.model.User;
 import sv.com.bandesal.pruebatecnica.repository.IUserRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
+
 @Service
 public class CustomDetailsService implements UserDetailsService{
     @Autowired
@@ -20,7 +21,6 @@ public class CustomDetailsService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = IUserRepository.findByEmail(email);
-
         if (user != null) {
                 return new org.springframework.security.core.userdetails.User(user.getEmail(),
                         user.getPassword(),

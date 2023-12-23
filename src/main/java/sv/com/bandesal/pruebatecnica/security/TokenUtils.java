@@ -11,14 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TokenUtils {
-
     private final static String ACCESS_TOKEN_SECRET = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
-
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS=2_592_00L;
 
     public static String createToken(String name, String email){
-        long expirationTIme = ACCESS_TOKEN_VALIDITY_SECONDS * 1000;
-        Date exipirationDate = new Date(System.currentTimeMillis() + expirationTIme);
+        var expirationTIme = ACCESS_TOKEN_VALIDITY_SECONDS * 1000;
+        var exipirationDate = new Date(System.currentTimeMillis() + expirationTIme);
         Map<String, Object> extra = new HashMap<>();
         extra.put("name", name);
         return Jwts.builder()
@@ -37,11 +35,10 @@ public class TokenUtils {
                     .parseClaimsJws(token)
                     .getBody();
 
-             String email = claims.getSubject();
-              return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
+             var email = claims.getSubject();
+             return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
          }catch (JwtException e) {
           return null;
       }
     }
-
 }

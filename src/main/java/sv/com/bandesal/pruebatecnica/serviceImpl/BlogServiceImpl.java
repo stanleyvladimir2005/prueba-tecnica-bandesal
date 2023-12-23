@@ -3,7 +3,6 @@ package sv.com.bandesal.pruebatecnica.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.Blog;
-import sv.com.bandesal.pruebatecnica.model.BlogReader;
 import sv.com.bandesal.pruebatecnica.repository.IBlogRepository;
 import sv.com.bandesal.pruebatecnica.repository.IGenericRepository;
 import sv.com.bandesal.pruebatecnica.service.IBlogService;
@@ -21,18 +20,17 @@ public class BlogServiceImpl extends CRUDImpl<Blog, Integer> implements IBlogSer
     }
 
     public void createOrUpdateBlog(Blog entity){
-        if(entity.getId()  == null){
-            entity = repo.save(entity);
-        } else {
+        if(entity.getId()  == null)
+            repo.save(entity);
+        else {
             Optional<Blog> blog = repo.findById(entity.getId());
             if(blog.isPresent()){
                 Blog newEntity = blog.get();
                 newEntity.setTitle(entity.getTitle());
                 newEntity.setDescription(entity.getDescription());
-                newEntity = repo.save(newEntity);
-            } else {
-                entity = repo.save(entity);
-            }
+                repo.save(newEntity);
+            } else
+                repo.save(entity);
         }
     }
 }

@@ -1,6 +1,5 @@
 package sv.com.bandesal.pruebatecnica.service;
 
-
 import java.util.List;
 
 public interface ICRUD<T, ID> {

@@ -31,9 +31,8 @@ public class BlogController {
         if (id.isPresent()) {
            Blog entity = blogService.findById(id.get());
             model.addAttribute("blog", entity);
-        } else {
+        } else
             model.addAttribute("blog", new Blog());
-        }
         return "add-edit-blogs";
     }
 

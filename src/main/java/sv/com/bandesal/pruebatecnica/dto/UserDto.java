@@ -12,15 +12,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-
     private Long id;
+
     @NotEmpty
     private String firstName;
+
     @NotEmpty
     private String lastName;
+
     @NotEmpty(message = "{user.email.message}")
     @Email
     private String email;
+
     @NotEmpty(message = "{user.password.message}")
     private String password;
 }

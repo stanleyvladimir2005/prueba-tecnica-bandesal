@@ -20,17 +20,16 @@ public class ReaderServiceImpl extends CRUDImpl<Reader,Integer> implements IRead
     }
 
     public void createOrUpdateReader(Reader entity) {
-        if(entity.getId()  == null){
-            entity = repo.save(entity);
-        }else{
+        if(entity.getId()  == null)
+             repo.save(entity);
+        else{
             Optional<Reader> reader = repo.findById(entity.getId());
             if(reader.isPresent()){
                 Reader readerNew = reader.get();
                 readerNew.setName(entity.getName());
-                readerNew = repo.save(readerNew);
-            } else {
-                entity = repo.save(entity);
-            }
+                repo.save(readerNew);
+            } else
+                repo.save(entity);
         }
     }
 }
