@@ -1,8 +1,8 @@
 package sv.com.bandesal.pruebatecnica.model;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.EqualsAndHashCode;
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

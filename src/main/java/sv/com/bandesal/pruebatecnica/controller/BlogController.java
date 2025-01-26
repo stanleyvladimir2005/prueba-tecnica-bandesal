@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class BlogController {
 
     @RequestMapping("/blogs/")
     public String getAllBlogs(Model model) {
-        List<Blog> list = blogService.findAll();
+        var list = blogService.findAll();
         model.addAttribute("blogs", list);
         return "list-blogs";
     }
@@ -29,8 +29,8 @@ public class BlogController {
     @RequestMapping(path = {"/blogs/edit", "/blogs/edit/{id}"})
     public String editBlogById(Model model, @PathVariable("id") Optional<Integer> id){
         if (id.isPresent()) {
-           Blog entity = blogService.findById(id.get());
-            model.addAttribute("blog", entity);
+           var entity = blogService.findById(id.get());
+           model.addAttribute("blog", entity);
         } else
             model.addAttribute("blog", new Blog());
         return "add-edit-blogs";
@@ -50,7 +50,7 @@ public class BlogController {
 
     @GetMapping(value = "/blogs/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Blog> findById(@PathVariable("id") Integer id) {
-        Blog blog = blogService.findById(id);
+        var blog = blogService.findById(id);
         return new ResponseEntity<>(blog, OK);
     }
 }

@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;

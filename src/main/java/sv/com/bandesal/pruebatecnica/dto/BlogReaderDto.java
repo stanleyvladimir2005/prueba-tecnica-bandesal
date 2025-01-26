@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.dto;
 
-import jakarta.persistence.Transient;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +21,9 @@ public class BlogReaderDto {
     private Reader reader;
 
     public String numeroAleatorio() {
-        char [] chars = "0123456789".toCharArray();
+        var chars = "0123456789".toCharArray();
         var charsLength = chars.length;
-        SecureRandom random = new SecureRandom();
+        var random = new SecureRandom();
 
         //Generamos el numero de 8 posiciones usando el arreglo chars
         return IntStream.range(0, 8)

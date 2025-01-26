@@ -17,7 +17,7 @@ public class TokenUtils {
     public static String createToken(String name, String email){
         var expirationTIme = ACCESS_TOKEN_VALIDITY_SECONDS * 1000;
         var exipirationDate = new Date(System.currentTimeMillis() + expirationTIme);
-        Map<String, Object> extra = new HashMap<>();
+        var extra = new HashMap<String, Object>();
         extra.put("name", name);
         return Jwts.builder()
                 .setSubject(email)
@@ -29,7 +29,7 @@ public class TokenUtils {
 
     public static UsernamePasswordAuthenticationToken getAuthentication(String token){
         try{
-             Claims claims = Jwts.parserBuilder()
+             var claims = Jwts.parserBuilder()
                     .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
                     .build()
                     .parseClaimsJws(token)

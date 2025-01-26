@@ -23,9 +23,9 @@ public class ReaderServiceImpl extends CRUDImpl<Reader,Integer> implements IRead
         if(entity.getId()  == null)
              repo.save(entity);
         else{
-            Optional<Reader> reader = repo.findById(entity.getId());
+            var reader = repo.findById(entity.getId());
             if(reader.isPresent()){
-                Reader readerNew = reader.get();
+                var readerNew = reader.get();
                 readerNew.setName(entity.getName());
                 repo.save(readerNew);
             } else

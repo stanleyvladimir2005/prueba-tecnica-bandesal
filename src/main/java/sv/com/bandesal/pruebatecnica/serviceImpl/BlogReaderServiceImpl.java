@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.serviceImpl;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.BlogReader;

@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +31,14 @@ public class AuthController {
 
     @GetMapping("register")
     public String showRegistrationForm(Model model){
-        UserDto user = new UserDto();
+        var user = new UserDto();
         model.addAttribute("user", user);
         return "register";
     }
 
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto user, BindingResult result,Model model){
-        User existing = userService.findByEmail(user.getEmail());
+        var existing = userService.findByEmail(user.getEmail());
         if (existing != null)
             result.rejectValue("email", null, "There is already an account registered with that email");
 
@@ -52,7 +52,7 @@ public class AuthController {
 
     @GetMapping("/users")
     public String listRegisteredUsers(Model model){
-        List<UserDto> users = userService.findAllUsers();
+        var users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users";
     }

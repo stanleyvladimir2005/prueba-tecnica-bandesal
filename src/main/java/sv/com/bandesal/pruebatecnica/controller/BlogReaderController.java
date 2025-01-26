@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,16 +35,16 @@ public class BlogReaderController {
 
     @RequestMapping("/blogReaders/")
     public String getAllBlogReaders(Model model) {
-        List<BlogReaderDto> list = service.getBlogReaders().stream().map(this::convertToDto).collect(Collectors.toList());
+        var list = service.getBlogReaders().stream().map(this::convertToDto).collect(Collectors.toList());
         model.addAttribute("blogReaders", list);
         return "list-blogReaders";
     }
 
     @RequestMapping(path = {"/blogReaders/edit"})
     public String editBlogReadersById(Model model ){
-            BlogReader entity = new BlogReader();
-            List<Blog> list11 = blogService.findAll();
-            List<Reader> list2 = readerService.findAll();
+            var entity = new BlogReader();
+            var list11 = blogService.findAll();
+            var list2 = readerService.findAll();
             model.addAttribute("blogReader", entity);
             model.addAttribute("itemsBlog", list11);
             model.addAttribute("itemsReader", list2);
@@ -59,7 +59,7 @@ public class BlogReaderController {
 
     @PostMapping (path = "/blogReaders/createBlogReaders")
     public String createOrUpdateBlogReaders(@Valid BlogReaderDto dto) {
-        BlogReader br = convertToEntity(dto);
+        var br = convertToEntity(dto);
         service.createOrUpdateBlog(br);
         return "redirect:/blogReaders/";
     }

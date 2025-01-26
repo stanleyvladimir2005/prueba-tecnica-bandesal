@@ -20,25 +20,24 @@ public class BlogsControllerRest {
    @Autowired
    private IBlogService service;
 
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Blog>> findAll() {
-        List<Blog> blogs = service.findAll();
+        var blogs = service.findAll();
         return new ResponseEntity<>(blogs, OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Blog> findById(@PathVariable("id") Integer id) {
-        Blog blog = service.findById(id);
+        var blog = service.findById(id);
         return new ResponseEntity<>(blog, OK);
     }
 
     @GetMapping("/hateoas/{id}")
     public EntityModel<Blog> findByIdHateoas(@PathVariable("id") Integer id) {
-        Blog blog = service.findById(id);
-        EntityModel<Blog> resource = EntityModel.of(blog);
-        WebMvcLinkBuilder link1 = linkTo(methodOn(this.getClass()).findById(id));
-        WebMvcLinkBuilder link2 = linkTo(methodOn(this.getClass()).findAll());
+        var blog = service.findById(id);
+        var resource = EntityModel.of(blog);
+        var link1 = linkTo(methodOn(this.getClass()).findById(id));
+        var link2 = linkTo(methodOn(this.getClass()).findAll());
         resource.add(link1.withRel("blog-info1"));
         resource.add(link2.withRel("blog-full"));
         return resource;

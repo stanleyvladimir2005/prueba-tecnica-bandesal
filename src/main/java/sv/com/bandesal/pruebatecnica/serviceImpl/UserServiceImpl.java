@@ -26,12 +26,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void saveUser(UserDto userDto) {
-        User user = new User();
+        var user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
 
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        Role role = roleRepository.findByName("ROLE_ADMIN");
+        var role = roleRepository.findByName("ROLE_ADMIN");
         if(role == null)
             role = checkRoleExist();
 
@@ -46,13 +46,13 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserDto> findAllUsers() {
-        List<User> users = userRepository.findAll();
+        var users = userRepository.findAll();
         return users.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
     private UserDto convertEntityToDto(User user){
-        UserDto userDto = new UserDto();
-        String[] name = user.getName().split(" ");
+        var userDto = new UserDto();
+        var name = user.getName().split(" ");
         userDto.setFirstName(name[0]);
         userDto.setLastName(name[1]);
         userDto.setEmail(user.getEmail());
@@ -60,7 +60,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     private Role checkRoleExist() {
-        Role role = new Role();
+        var role = new Role();
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }

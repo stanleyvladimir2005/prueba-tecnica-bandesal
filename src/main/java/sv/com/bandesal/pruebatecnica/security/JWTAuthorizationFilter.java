@@ -1,9 +1,9 @@
 package sv.com.bandesal.pruebatecnica.security;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         var bearerToken = request.getHeader("Authorization");
         if(bearerToken != null && bearerToken.startsWith("Bearer ")){
             var token = bearerToken.replace("Bearer", "");
-            UsernamePasswordAuthenticationToken usernamePAT = TokenUtils.getAuthentication(token);
+            var usernamePAT = TokenUtils.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(usernamePAT);
         }
         filterChain.doFilter(request, response);

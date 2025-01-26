@@ -71,3 +71,5 @@ CREATE TABLE users_roles (
     CONSTRAINT user_role_fk1 FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT user_role_fk2 FOREIGN KEY (role_id) REFERENCES roles (id)
 );
+
+--Bar2005XP! PASSWORD DE BD EN DOCKER

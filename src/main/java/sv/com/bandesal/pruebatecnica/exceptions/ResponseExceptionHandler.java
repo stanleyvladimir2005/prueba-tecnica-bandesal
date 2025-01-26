@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler{
 
-	@ExceptionHandler(ModelNotFoundException.class)
+	/*@ExceptionHandler(ModelNotFoundException.class)
     public ProblemDetail handleModelNotFoundException(ModelNotFoundException ex){
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
         problemDetail.setTitle("Model Not Found");
         problemDetail.setType(URI.create("/not-found"));
         return problemDetail;
-    }
+    }*/
 
 	@ExceptionHandler(SQLException.class)
 	public ResponseEntity<CustomErrorResponse> handleSQLException(SQLException ex, WebRequest req){
@@ -29,7 +29,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<>(res, HttpStatus.CONFLICT);
 	}
 
-	@Override
+	/*@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			      MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		var msg = ex.getBindingResult().getAllErrors()
@@ -39,7 +39,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler{
 				.collect(Collectors.joining());
 		CustomErrorResponse err = new CustomErrorResponse(LocalDateTime.now(), msg, request.getDescription(false));
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-	}
+	}*/
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CustomErrorResponse> handleAllException(ModelNotFoundException ex, WebRequest request) {

@@ -23,9 +23,9 @@ public class BlogServiceImpl extends CRUDImpl<Blog, Integer> implements IBlogSer
         if(entity.getId()  == null)
             repo.save(entity);
         else {
-            Optional<Blog> blog = repo.findById(entity.getId());
+            var blog = repo.findById(entity.getId());
             if(blog.isPresent()){
-                Blog newEntity = blog.get();
+                var newEntity = blog.get();
                 newEntity.setTitle(entity.getTitle());
                 newEntity.setDescription(entity.getDescription());
                 repo.save(newEntity);
