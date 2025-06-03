@@ -92,11 +92,11 @@
     <div class="card-body">
         <div th:switch="${blogReaders}" class="container my-5">
             <p class="my-5">
-                <a href="/blogReaders/edit" class="btn btn-primary">
+                <a href="/prueba-tecnica-1-plain/blogReaders/edit" class="btn btn-primary">
                 <i class="fas fa-user-plus ml-2"> Agregar Lector de Blog </i></a>
             </p>
             <div class="col-md-10">
-                <h2 th:case="null">No se encotraron Lector de blog !!</h2>
+                <h2 th:case="null">No se encontro Lector de blog !!</h2>
                 <div th:case="*">
                     <table class="table table-striped table-responsive-md">
                         <thead>
