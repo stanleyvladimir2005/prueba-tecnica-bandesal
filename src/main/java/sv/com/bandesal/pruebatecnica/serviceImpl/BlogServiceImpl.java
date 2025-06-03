@@ -1,18 +1,17 @@
 package sv.com.bandesal.pruebatecnica.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.Blog;
 import sv.com.bandesal.pruebatecnica.repository.IBlogRepository;
 import sv.com.bandesal.pruebatecnica.repository.IGenericRepository;
 import sv.com.bandesal.pruebatecnica.service.IBlogService;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BlogServiceImpl extends CRUDImpl<Blog, Integer> implements IBlogService {
 
-    @Autowired
-    private IBlogRepository repo;
+    private final  IBlogRepository repo;
 
     @Override
     protected IGenericRepository<Blog, Integer> getRepo() {

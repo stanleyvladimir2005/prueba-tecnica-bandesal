@@ -1,7 +1,7 @@
 package sv.com.bandesal.pruebatecnica.serviceImpl;
 
 import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.BlogReader;
 import sv.com.bandesal.pruebatecnica.repository.IBlogReaderRepository;
@@ -12,10 +12,10 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class BlogReaderServiceImpl extends CRUDImpl<BlogReader, Integer> implements IBlogReaderService {
 
-    @Autowired
-    private IBlogReaderRepository repo;
+    private final IBlogReaderRepository repo;
 
     @Override
     protected IGenericRepository<BlogReader, Integer> getRepo() {

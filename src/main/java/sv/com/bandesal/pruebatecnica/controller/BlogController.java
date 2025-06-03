@@ -1,7 +1,7 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,15 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sv.com.bandesal.pruebatecnica.model.Blog;
 import sv.com.bandesal.pruebatecnica.service.IBlogService;
-import java.util.List;
 import java.util.Optional;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
+@RequiredArgsConstructor
 public class BlogController {
 
-    @Autowired
-    private IBlogService blogService;
+    private final IBlogService blogService;
 
     @RequestMapping("/blogs/")
     public String getAllBlogs(Model model) {

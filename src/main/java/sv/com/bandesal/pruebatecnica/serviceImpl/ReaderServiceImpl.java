@@ -1,18 +1,17 @@
 package sv.com.bandesal.pruebatecnica.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.Reader;
 import sv.com.bandesal.pruebatecnica.repository.IGenericRepository;
 import sv.com.bandesal.pruebatecnica.repository.IReaderRepository;
 import sv.com.bandesal.pruebatecnica.service.IReaderService;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ReaderServiceImpl extends CRUDImpl<Reader,Integer> implements IReaderService {
 
-    @Autowired
-    private IReaderRepository repo;
+    private final IReaderRepository repo;
 
     @Override
     protected IGenericRepository<Reader, Integer> getRepo() {

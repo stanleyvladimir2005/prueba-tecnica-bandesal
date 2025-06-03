@@ -1,7 +1,8 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,15 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import sv.com.bandesal.pruebatecnica.dto.UserDto;
-import sv.com.bandesal.pruebatecnica.model.User;
 import sv.com.bandesal.pruebatecnica.service.IUserService;
-import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
 
-    @Autowired
-    private IUserService userService;
+    private final IUserService userService;
 
     @GetMapping("index")
     public String home(){

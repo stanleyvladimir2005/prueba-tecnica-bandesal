@@ -1,6 +1,6 @@
 package sv.com.bandesal.pruebatecnica.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,15 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import sv.com.bandesal.pruebatecnica.model.Role;
-import sv.com.bandesal.pruebatecnica.model.User;
 import sv.com.bandesal.pruebatecnica.repository.IUserRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomDetailsService implements UserDetailsService{
-    @Autowired
-    private IUserRepository IUserRepository;
+
+    private final  IUserRepository IUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -1,37 +1,29 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
 import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sv.com.bandesal.pruebatecnica.dto.BlogReaderDto;
-import sv.com.bandesal.pruebatecnica.model.Blog;
 import sv.com.bandesal.pruebatecnica.model.BlogReader;
-import sv.com.bandesal.pruebatecnica.model.Reader;
 import sv.com.bandesal.pruebatecnica.service.IBlogReaderService;
 import sv.com.bandesal.pruebatecnica.service.IBlogService;
 import sv.com.bandesal.pruebatecnica.service.IReaderService;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
+@RequiredArgsConstructor
 public class BlogReaderController {
 
-    @Autowired
-    private IBlogReaderService service;
+    private final IBlogReaderService service;
 
-    @Autowired
-    private IBlogService blogService;
+    private final IBlogService blogService;
 
-    @Autowired
-    private IReaderService readerService;
+    private final IReaderService readerService;
 
-    @Autowired
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     @RequestMapping("/blogReaders/")
     public String getAllBlogReaders(Model model) {

@@ -1,7 +1,7 @@
 package sv.com.bandesal.pruebatecnica.controller;
 
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,10 +14,10 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
+@RequiredArgsConstructor
 public class ReaderController {
 
-    @Autowired
-    private IReaderService readerService;
+    private final IReaderService readerService;
 
     @RequestMapping("/readers/")
     public String getAllreaders(Model model) {

@@ -10,11 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @IdClass(BlogReaderPK.class)
+@Table(name = "blog_reader")
 public class BlogReader {
 
    @Id
+   @ManyToOne
+   @JoinColumn(name="b_id")
    private Blog blog;
 
    @Id
+   @ManyToOne
+   @JoinColumn(name="r_id")
    private Reader reader;
 }
