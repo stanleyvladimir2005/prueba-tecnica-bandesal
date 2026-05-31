@@ -9,6 +9,9 @@ group = 'sv.com.bandesal'
 version = '1'
 
 java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
     sourceCompatibility = '21'
     targetCompatibility = '21'
 }
@@ -17,6 +20,13 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-el'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-websocket'
+        exclude module: 'spring-boot-starter-logging' // Se excluye el logging para evitar conflictos con Log4J2
+    }
 }
 
 repositories {
@@ -24,9 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web') {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-    }
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -42,10 +50,6 @@ dependencies {
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-configurations {
-    all*.exclude module: 'spring-boot-starter-logging' //Se excluye el looging para evitar conflictos con log4J2
 }
 
 tasks.named('test') {
